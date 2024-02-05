@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/chatPage.dart';
-import 'package:flutter_application_1/Views/chatPage/colorConstant.dart';
+import 'package:flutter_application_1/Views/PersonalChatScreen/personalChatPage.dart';
+import 'package:flutter_application_1/Views/colorConstant.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 
-class Chat_Content_Page extends StatelessWidget {
-  const Chat_Content_Page({super.key});
+class All_Chats_Page extends StatelessWidget {
+  const All_Chats_Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class Chat_Content_Page extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Chat_Page(),
+                          builder: (context) => Chat_Page(name: "julie"),
                         ));
                   },
                   child: Container(
@@ -33,8 +33,10 @@ class Chat_Content_Page extends StatelessWidget {
                       leading: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(5),
                           child: Container(
+                            width: MediaQuery.sizeOf(context).width * .13,
+                            height: MediaQuery.sizeOf(context).height * .15,
                             child: Image.asset(
                               "assets/dp1.webp",
                               fit: BoxFit.fill,
