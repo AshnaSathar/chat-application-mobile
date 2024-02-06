@@ -34,6 +34,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isvisible = false;
+
+  final emailValid = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   List<CheckboxItem> checkboxes = [
@@ -66,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                       controller: nameController,
+                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
@@ -127,7 +131,29 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(15),
                   child: InkWell(
                     onTap: () {
-                      Navigator.of(context).push(LoginPage.HomeRoute());
+                      if (nameController.text.isNotEmpty &&
+                          nameController.text.contains(emailValid) &&
+                          passwordController.text.isNotEmpty) {
+                        Navigator.of(context).push(LoginPage.HomeRoute());
+                      } else {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              color: Colors.transparent,
+                              width: MediaQuery.sizeOf(context).width,
+                              height:
+                                  MediaQuery.sizeOf(context).height * .5 / 4,
+                              child: Center(
+                                  child: Text(
+                                "Please Enter Your Email Id and Password!!",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              )),
+                            );
+                          },
+                        );
+                      }
                     },
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * .3,

@@ -3,7 +3,10 @@ import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
 import 'package:image_picker/image_picker.dart';
 
 Widget iconcreation(
-    {required IconData icon, required Color color, required String text}) {
+    {required context,
+    required IconData icon,
+    required Color color,
+    required String text}) {
   return Column(
     children: [
       CircleAvatar(
@@ -52,3 +55,21 @@ Widget iconcreation(
     ],
   );
 }
+
+// class CameraPermissions extends StatefulWidget {
+//   const CameraPermissions({super.key});
+
+//   @override
+//   State<CameraPermissions> createState() => _CameraPermissionsState();
+// }
+
+// class _CameraPermissionsState extends State<CameraPermissions> {
+//   late CameraController controller;
+//   late List<CameraDescription> cameras;
+//   bool showCamera = false;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }

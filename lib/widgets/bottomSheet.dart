@@ -14,6 +14,7 @@ Widget bottomsheet({required context}) {
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 iconcreation(
+                    context: context,
                     icon: Icons.insert_drive_file,
                     color: Color.fromARGB(255, 110, 103, 239),
                     text: "Document"),
@@ -21,6 +22,7 @@ Widget bottomsheet({required context}) {
                   width: 40,
                 ),
                 iconcreation(
+                    context: context,
                     icon: Icons.camera_alt,
                     color: Color.fromARGB(255, 247, 106, 96),
                     text: "Camera"),
@@ -28,6 +30,7 @@ Widget bottomsheet({required context}) {
                   width: 40,
                 ),
                 iconcreation(
+                    context: context,
                     icon: Icons.image_rounded,
                     color: Colors.pink,
                     text: "Gallery"),
@@ -36,6 +39,7 @@ Widget bottomsheet({required context}) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   iconcreation(
+                      context: context,
                       icon: Icons.headphones,
                       color: Colors.orange,
                       text: "Audio"),
@@ -43,6 +47,7 @@ Widget bottomsheet({required context}) {
                     width: 40,
                   ),
                   iconcreation(
+                      context: context,
                       icon: Icons.contact_page,
                       color: Colors.blue,
                       text: "Contact"),

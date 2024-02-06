@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/colorConstant.dart';
-import 'package:flutter_application_1/Views/roomMembers.dart';
+import 'package:flutter_application_1/Views/GroupChatScreen/roomMembers.dart';
 
 class AppbarForGroupChat extends StatelessWidget {
   final String subcategory;
@@ -8,7 +8,7 @@ class AppbarForGroupChat extends StatelessWidget {
       : super(key: key);
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
         color: ColorsUsedChat.appBarcolor,
@@ -61,23 +61,17 @@ class AppbarForGroupChat extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            RoomMembers(title: this.subcategory),
-                      ));
-                },
-                child: Icon(Icons.groups_2)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(child: Icon(Icons.more_vert)),
-          ),
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          RoomMembers(title: this.subcategory),
+                    ));
+              },
+              child: Icon(Icons.groups_2)),
+          InkWell(child: Icon(Icons.more_vert)),
         ],
       ),
     );

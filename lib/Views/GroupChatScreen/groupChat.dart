@@ -18,7 +18,11 @@ class _GroupChatState extends State<GroupChat_Page> {
       body: Stack(
         children: [
           ChatBody(),
-          AppbarForGroupChat(subcategory: widget.subcategory),
+          Positioned(
+              right: 0,
+              left: 0,
+              top: 0,
+              child: AppbarForGroupChat(subcategory: widget.subcategory)),
           Positioned(
             bottom: 0,
             left: 0,

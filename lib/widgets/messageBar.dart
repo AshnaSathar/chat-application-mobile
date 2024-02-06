@@ -1,3 +1,4 @@
+import 'package:emoji_keyboard_flutter/emoji_keyboard_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
 import 'package:flutter_application_1/widgets/bottomSheet.dart';
@@ -34,7 +35,9 @@ class _MessageBarState extends State<MessageBar> {
               Icons.sentiment_satisfied,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              EmojiBoard();
+            },
           ),
           IconButton(
             icon: Icon(
