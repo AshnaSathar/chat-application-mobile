@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 
 class CheckboxItem {
   final String name;
@@ -31,7 +31,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
             hoverColor: Colors.transparent,
             contentPadding: EdgeInsets.only(left: 60),
             activeColor: Colors.white,
-            checkColor: ColorsUsed.bgcolor,
+            checkColor: ColorsUsed.secondaryColor,
             side: BorderSide(color: Colors.white),
             controlAffinity: ListTileControlAffinity.leading,
             value: item.status,
@@ -44,7 +44,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
               children: [
                 Text(
                   item.name,
-                  style: TextStyle(fontSize: 14, color: ColorsUsed.textColor),
+                  style:
+                      TextStyle(fontSize: 14, color: ColorsUsed.secondaryColor),
                 ),
               ],
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:image_picker/image_picker.dart';
 
 Widget iconcreation(
@@ -43,7 +43,7 @@ Widget iconcreation(
           },
           child: Icon(
             icon,
-            color: ColorsUsed.iconColor,
+            color: ColorsUsed.primaryIconColor,
             size: 29,
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/Views/GroupChatScreen/groupChat.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
-import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
 import 'package:provider/provider.dart';
 
 class All_Rooms_Page extends StatefulWidget {
@@ -13,10 +13,23 @@ class All_Rooms_Page extends StatefulWidget {
 }
 
 class _All_Rooms_PageState extends State<All_Rooms_Page> {
-  Map<String?, String?> selectedValues = {};
+  List<bool> isexpanded = [];
+
+  @override
+  @override
+  void initState() {
+    super.initState();
+    var dropdownItems =
+        Provider.of<ProviderClass>(context, listen: false).dropdownItems;
+    isexpanded = List.generate(
+      dropdownItems.length,
+      (index) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.sizeOf(context).width;
     var dropdownItems = Provider.of<ProviderClass>(context).dropdownItems;
 
     return Column(
@@ -33,7 +46,7 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
                 "Categories",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: ColorsUsed.bgcolor,
+                  color: ColorsUsed.secondaryColor,
                 ),
               ),
             ),
@@ -43,8 +56,8 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
           child: Row(
             children: [
               Container(
-                width: MediaQuery.of(context).size.width,
-                color: Colors.white,
+                width: width,
+                color: ColorsUsed.secondaryColor,
                 child: ListView.builder(
                   itemCount: dropdownItems.keys.length,
                   itemBuilder: (context, index) {
@@ -53,9 +66,25 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
                         dropdownItems[heading] ?? {};
 
                     return ExpansionTile(
-                      title: Text(heading),
+                      title: Text(
+                        heading,
+                      ),
+                      textColor: isexpanded[index]
+                          ? ColorsUsed.primaryColor
+                          : Colors.black,
+                      collapsedIconColor: isexpanded[index]
+                          ? Colors.black
+                          : ColorsUsed.primaryColor,
+                      onExpansionChanged: (value) {
+                        setState(() {
+                          isexpanded[index] = value;
+                        });
+                      },
+                      initiallyExpanded: false,
                       children: subItems.keys.map((subItem) {
                         return ExpansionTile(
+                          textColor: ColorsUsed.primaryColor,
+                          collapsedTextColor: Colors.black,
                           title: Text(subItem),
                           children: subItems[subItem]!.map((room) {
                             return ListTile(
@@ -70,7 +99,10 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
                                     ),
                                   );
                                 },
-                                child: Icon(Icons.chat),
+                                child: Icon(
+                                  Icons.send,
+                                  color: ColorsUsed.primaryColor,
+                                ),
                               ),
                             );
                           }).toList(),

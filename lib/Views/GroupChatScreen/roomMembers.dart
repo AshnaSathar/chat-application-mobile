@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/PersonalChatScreen/personalChatPage.dart';
-import 'package:flutter_application_1/Views/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 
 class RoomMembers extends StatelessWidget {
   final String title;
@@ -60,7 +60,7 @@ Widget AppBarForRoomMembers({required context, required String title}) {
     width: double.infinity,
     height: MediaQuery.of(context).size.height * 0.1,
     decoration: BoxDecoration(
-      color: ColorsUsedChat.appBarcolor,
+      color: ColorsUsed.appBarcolor,
       boxShadow: [
         BoxShadow(
           color: Colors.black.withOpacity(0.2),

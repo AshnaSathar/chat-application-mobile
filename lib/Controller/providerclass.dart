@@ -58,17 +58,17 @@ class ProviderClass extends ChangeNotifier {
     },
   };
 
-  String subcategoryHeading = "Latest cricket news";
-  bool changeRoomPageValue = false;
-  // true =subcategory
+  // String subcategoryHeading = "Latest cricket news";
+  // bool changeRoomPageValue = false;
+// true =subcategory
 // false= category
-  Future changeRoomPageToSubCategory() async {
-    changeRoomPageValue = true;
-    notifyListeners();
-  }
+  // Future changeRoomPageToSubCategory() async {
+  //   changeRoomPageValue = true;
+  //   notifyListeners();
+  // }
 
-  Future changeRoomPageToCategory() async {
-    changeRoomPageValue = false;
-    notifyListeners();
-  }
+  // Future changeRoomPageToCategory() async {
+  //   changeRoomPageValue = false;
+  //   notifyListeners();
+  // }
 }

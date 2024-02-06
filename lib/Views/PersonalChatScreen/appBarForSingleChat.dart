@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 
 class AppbarContainer extends StatelessWidget {
   final String title;
   const AppbarContainer({Key? key, required this.title}) : super(key: key);
   Widget build(BuildContext context) {
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.1,
+      width: width,
+      height: height * 0.1,
       decoration: BoxDecoration(
-        color: ColorsUsedChat.appBarcolor,
+        color: ColorsUsed.primaryColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -30,8 +32,8 @@ class AppbarContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.1,
+              height: height * 0.06,
+              width: width * 0.1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/Views/HomePage/allChats.dart';
-import 'package:flutter_application_1/Views/colorConstant.dart';
 import 'package:flutter_application_1/Views/HomePage/allRooms.dart';
-import 'package:flutter_application_1/Views/subcategoryList.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUsedChat.bgcolor,
+      backgroundColor: ColorsUsed.secondaryColor,
       body: DefaultTabController(
         length: 2,
         child: Column(
@@ -61,13 +59,8 @@ class _HomePageState extends State<HomePage> {
                       All_Chats_Page(),
 
                       // Content of Tab 2
-                      Provider.of<ProviderClass>(context).changeRoomPageValue
-                          ? SubcategoryList(
-                              subcategoryname: Provider.of<ProviderClass>(
-                                      context,
-                                      listen: false)
-                                  .subcategoryHeading)
-                          : All_Rooms_Page()
+
+                      All_Rooms_Page()
                     ],
                   );
                 },
@@ -85,9 +78,11 @@ class HomePageAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Container(
       decoration: BoxDecoration(
-        color: ColorsUsedChat.appBarcolor,
+        color: ColorsUsed.appBarcolor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -97,8 +92,8 @@ class HomePageAppbar extends StatelessWidget {
           ),
         ],
       ),
-      height: MediaQuery.sizeOf(context).height * .1,
-      width: double.infinity,
+      height: height * .1,
+      width: width,
       child: Row(
         children: [
           SizedBox(
@@ -115,8 +110,8 @@ class HomePageAppbar extends StatelessWidget {
                   offset: Offset(0, 2),
                 ),
               ]),
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.width * 0.15,
+              height: height * 0.15,
+              width: width * 0.15,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
@@ -133,7 +128,7 @@ class HomePageAppbar extends StatelessWidget {
               },
               icon: Icon(
                 Icons.more_vert,
-                color: Colors.black,
+                color: ColorsUsed.secondaryIconColor,
               ))
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/PersonalChatScreen/personalChatPage.dart';
-import 'package:flutter_application_1/Views/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 
 class All_Chats_Page extends StatelessWidget {
@@ -8,6 +8,8 @@ class All_Chats_Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Column(
       children: [
         Padding(
@@ -35,8 +37,8 @@ class All_Chats_Page extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Container(
-                            width: MediaQuery.sizeOf(context).width * .13,
-                            height: MediaQuery.sizeOf(context).height * .15,
+                            width: width * .13,
+                            height: height * .15,
                             child: Image.asset(
                               "assets/dp1.webp",
                               fit: BoxFit.fill,
@@ -56,7 +58,7 @@ class All_Chats_Page extends StatelessWidget {
                             " Julie",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: ColorsUsedChat.textColor,
+                                color: ColorsUsed.secondaryTextColor,
                                 fontSize: 18),
                           ),
                         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/colorConstant.dart';
 import 'package:flutter_application_1/Views/GroupChatScreen/roomMembers.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 
 class AppbarForGroupChat extends StatelessWidget {
   final String subcategory;
@@ -11,7 +11,7 @@ class AppbarForGroupChat extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: ColorsUsedChat.appBarcolor,
+        color: ColorsUsed.appBarcolor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),

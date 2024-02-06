@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/HomePage/homePage.dart';
-import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/widgets/checkbox.dart';
 
 class LoginPage extends StatefulWidget {
@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
 
   @override
   State<LoginPage> createState() => _LoginPageState();
-
+// route function with transition effect
   static Route HomeRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => HomePage(),
@@ -44,87 +44,82 @@ class _LoginPageState extends State<LoginPage> {
     CheckboxItem(name: 'Sign in automatically'),
     CheckboxItem(name: 'Sign in as invisible to everyone'),
   ];
-
+  late bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: ColorsUsed.bgcolor,
+      backgroundColor: ColorsUsed.primaryColor,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(35.0),
-                child: Text(
-                  "ynotz",
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      color: ColorsUsed.textColor,
-                      fontSize: 50,
-                      fontWeight: FontWeight.w900),
-                ),
-              ),
+                  padding: const EdgeInsets.all(35.0),
+                  child: Text("ynotz",
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          color: ColorsUsed.secondaryColor,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w900))),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                       controller: nameController,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: ColorsUsed.primaryTextColor),
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide:
+                              BorderSide(color: ColorsUsed.primaryTextColor),
                         ),
-                        hintStyle: TextStyle(color: Colors.white),
+                        hintStyle:
+                            TextStyle(color: ColorsUsed.primaryTextColor),
                         hintText: "Ynotz Id",
                       ))),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
-                  obscureText: isvisible ? true : false,
+                  style: TextStyle(color: ColorsUsed.primaryTextColor),
                   controller: passwordController,
-                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    suffixIcon: isvisible
-                        ? InkWell(
-                            onTap: () {
-                              setState(() {
-                                isvisible = false;
-                              });
-                            },
-                            child: Icon(
-                              Icons.visibility_off,
-                              color: Colors.white,
-                            ))
-                        : InkWell(
-                            onTap: () {
-                              setState(() {
-                                isvisible = true;
-                              });
-                            },
-                            child: Icon(
-                              Icons.visibility,
-                              color: Colors.white,
-                            )),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide:
+                          BorderSide(color: ColorsUsed.primaryTextColor),
                     ),
-                    hintStyle: TextStyle(color: Colors.white),
                     hintText: "Password",
+                    hintStyle: TextStyle(color: ColorsUsed.primaryTextColor),
+                    suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                      child: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: ColorsUsed.primaryIconColor,
+                      ),
+                    ),
                   ),
+                  obscureText: !isPasswordVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.done,
                 ),
               ),
               Container(
-                width: double.infinity,
-                child: CheckboxGroup(
-                  items: checkboxes,
-                ),
-              ),
+                  width: double.infinity,
+                  child: CheckboxGroup(
+                    items: checkboxes,
+                  )),
               Padding(
                 padding: const EdgeInsets.only(top: 55),
                 child: ClipRRect(
@@ -137,27 +132,25 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.of(context).push(LoginPage.HomeRoute());
                       } else {
                         showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              color: Colors.transparent,
-                              width: MediaQuery.sizeOf(context).width,
-                              height:
-                                  MediaQuery.sizeOf(context).height * .5 / 4,
-                              child: Center(
-                                  child: Text(
-                                "Please Enter Your Email Id and Password!!",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              )),
-                            );
-                          },
-                        );
+                            context: context,
+                            builder: (context) {
+                              return Container(
+                                  color: Colors.transparent,
+                                  width: width,
+                                  height: height * .5 / 4,
+                                  child: Center(
+                                      child: Text(
+                                    "Please Enter Your Email Id and Password!!",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  )));
+                            });
                       }
                     },
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width * .3,
-                      height: MediaQuery.sizeOf(context).height * .06,
+                      width: width * .3,
+                      height: height * .06,
                       decoration: BoxDecoration(
                         color: Color.fromARGB(237, 244, 244, 244),
                       ),
@@ -166,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                           "Sign In",
                           style: TextStyle(
                               fontSize: 18,
-                              color: ColorsUsed.bgcolor,
+                              color: ColorsUsed.primaryColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -177,11 +170,13 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+// -------------------------------------------------------------------------------------functionalities
+                  },
                   child: Text(
                     "Forget your password?",
                     style: TextStyle(
-                        color: ColorsUsed.textColor,
+                        color: ColorsUsed.secondaryColor,
                         fontWeight: FontWeight.w200),
                   ),
                 ),
@@ -193,3 +188,48 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+//  Padding(
+//                 padding: const EdgeInsets.all(8.0),
+//                 child: TextFormField(
+//                   keyboardType: TextInputType.visiblePassword,
+//                   textInputAction: TextInputAction.done,
+//                   onTap: () {
+//                     iconpresent = false;
+//                   },
+//                   obscureText: isvisible ? true : false,
+//                   controller: passwordController,
+//                   style: TextStyle(color: ColorsUsed.primaryTextColor),
+//                   decoration: InputDecoration(
+//                     suffixIcon: isvisible
+//                         ? InkWell(
+//                             onTap: () {
+//                               setState(() {
+//                                 isvisible = false;
+//                               });
+//                             },
+//                             child: Icon(
+//                               Icons.visibility_off,
+//                               color: ColorsUsed.primaryIconColor,
+//                             ))
+//                         : InkWell(
+//                             onTap: () {
+//                               setState(() {
+//                                 isvisible = true;
+//                               });
+//                             },
+//                             child: Icon(
+//                               Icons.visibility,
+//                               color: ColorsUsed.primaryIconColor,
+//                             )),
+//                     focusedBorder: OutlineInputBorder(
+//                       borderSide: BorderSide(color: Colors.blue),
+//                     ),
+//                     enabledBorder: OutlineInputBorder(
+//                       borderSide:
+//                           BorderSide(color: ColorsUsed.primaryTextColor),
+//                     ),
+//                     hintStyle: TextStyle(color: ColorsUsed.primaryTextColor),
+//                     hintText: "Password",
+//                   ),
+//                 ),
+//               ),

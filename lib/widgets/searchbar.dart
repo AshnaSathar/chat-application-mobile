@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 
 class SearchbarCustom extends StatelessWidget {
   const SearchbarCustom({super.key});
@@ -19,11 +20,11 @@ class SearchbarCustom extends StatelessWidget {
         ],
       ),
       child: TextField(
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(),
         decoration: InputDecoration(
           suffixIcon: Icon(
             Icons.search,
-            color: Colors.black,
+            color: ColorsUsed.secondaryIconColor,
             size: 40,
           ),
           filled: true,

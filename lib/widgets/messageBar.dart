@@ -1,6 +1,6 @@
 import 'package:emoji_keyboard_flutter/emoji_keyboard_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Views/loginPage/colorConstant.dart';
+import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/widgets/bottomSheet.dart';
 
 class MessageBar extends StatefulWidget {
@@ -33,7 +33,7 @@ class _MessageBarState extends State<MessageBar> {
           IconButton(
             icon: Icon(
               Icons.sentiment_satisfied,
-              color: Colors.black,
+              color: ColorsUsed.secondaryIconColor,
             ),
             onPressed: () {
               EmojiBoard();
@@ -42,7 +42,7 @@ class _MessageBarState extends State<MessageBar> {
           IconButton(
             icon: Icon(
               Icons.add,
-              color: Colors.black,
+              color: ColorsUsed.secondaryIconColor,
             ),
             onPressed: () {
               showModalBottomSheet(
