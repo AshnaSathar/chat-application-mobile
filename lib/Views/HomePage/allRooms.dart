@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/Views/GroupChatScreen/groupChat.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
+import 'package:flutter_application_1/constants/textstyle.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 import 'package:provider/provider.dart';
 
@@ -44,10 +45,8 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Categories",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: ColorsUsed.secondaryColor,
-                ),
+                style: TextStyleConstants.textstyle(
+                    color: ColorsUsed.primaryColor),
               ),
             ),
           ],
@@ -68,6 +67,7 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
                     return ExpansionTile(
                       title: Text(
                         heading,
+                        style: TextStyleConstants.textstyle(),
                       ),
                       textColor: isexpanded[index]
                           ? ColorsUsed.primaryColor
@@ -85,17 +85,43 @@ class _All_Rooms_PageState extends State<All_Rooms_Page> {
                         return ExpansionTile(
                           textColor: ColorsUsed.primaryColor,
                           collapsedTextColor: Colors.black,
-                          title: Text(subItem),
+                          title: Text(
+                            subItem,
+                            style: TextStyleConstants.textstyle(
+                              fontSize: 14,
+                            ),
+                          ),
                           children: subItems[subItem]!.map((room) {
                             return ListTile(
-                              title: Text(room),
+                              title: Text(
+                                room,
+                                style: TextStyleConstants.textstyle(
+                                    fontSize: 14,
+                                    color: ColorsUsed.secondaryTextColor),
+                              ),
                               trailing: InkWell(
                                 onTap: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
+                                    PageRouteBuilder(
+                                      pageBuilder: (context, animation,
+                                              secondaryAnimation) =>
                                           GroupChat_Page(subcategory: room),
+                                      transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) {
+                                        var begin = Offset(1.0, 0.0);
+                                        var end = Offset.zero;
+                                        var curve = Curves.ease;
+
+                                        var tween = Tween(
+                                                begin: begin, end: end)
+                                            .chain(CurveTween(curve: curve));
+
+                                        return SlideTransition(
+                                          position: animation.drive(tween),
+                                          child: child,
+                                        );
+                                      },
                                     ),
                                   );
                                 },

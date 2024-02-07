@@ -18,39 +18,42 @@ class RoomMembers extends StatelessWidget {
 }
 
 Widget RoomMemberBody({required context}) {
-  return Container(
-    height: MediaQuery.sizeOf(context).height * .9,
-    child: ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        int i = index;
+  return Flexible(
+    child: Container(
+      height: MediaQuery.sizeOf(context).height - .1,
+      child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          int i = index;
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            leading: Container(
-              height: MediaQuery.sizeOf(context).height * .1,
-              width: MediaQuery.sizeOf(context).width * .15,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    "assets/dp1.webp",
-                    fit: BoxFit.fill,
-                  )),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: Container(
+                height: MediaQuery.sizeOf(context).height * .1,
+                width: MediaQuery.sizeOf(context).width * .15,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      "assets/dp1.webp",
+                      fit: BoxFit.fill,
+                    )),
+              ),
+              title: Text("Member $i"),
+              trailing: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Chat_Page(name: "Member $index"),
+                        ));
+                  },
+                  child: Icon(Icons.send)),
             ),
-            title: Text("Member $i"),
-            trailing: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Chat_Page(name: "Member $index"),
-                      ));
-                },
-                child: Icon(Icons.send)),
-          ),
-        );
-      },
+          );
+        },
+      ),
     ),
   );
 }

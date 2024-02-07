@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/PersonalChatScreen/personalChatPage.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
+import 'package:flutter_application_1/constants/textstyle.dart';
 import 'package:flutter_application_1/widgets/searchbar.dart';
 
 class All_Chats_Page extends StatelessWidget {
@@ -26,7 +27,9 @@ class All_Chats_Page extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Chat_Page(name: "julie"),
+                          builder: (context) => Chat_Page(
+                            name: "julie",
+                          ),
                         ));
                   },
                   child: Container(
@@ -56,15 +59,18 @@ class All_Chats_Page extends StatelessWidget {
                           ),
                           Text(
                             " Julie",
-                            style: TextStyle(
+                            style: TextStyleConstants.textstyle(
                                 fontWeight: FontWeight.bold,
-                                color: ColorsUsed.secondaryTextColor,
-                                fontSize: 18),
+                                color: ColorsUsed.secondaryTextColor),
                           ),
                         ],
                       ),
                       //------------------ message
-                      subtitle: Text("Any plans for Today?"),
+                      subtitle: Text(
+                        "Any plans for Today?",
+                        style: TextStyleConstants.textstyle(
+                            color: ColorsUsed.secondaryTextColor),
+                      ),
                       // -------------------time
                       trailing: Text("1h"),
                     ),
