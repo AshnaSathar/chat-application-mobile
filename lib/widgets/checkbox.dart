@@ -31,7 +31,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
             hoverColor: Colors.transparent,
             contentPadding: EdgeInsets.only(left: 60),
             activeColor: Colors.white,
-            checkColor: ColorsUsed.secondaryColor,
+            checkColor: ColorsUsed.primaryColor,
             side: BorderSide(color: Colors.white),
             controlAffinity: ListTileControlAffinity.leading,
             value: item.status,

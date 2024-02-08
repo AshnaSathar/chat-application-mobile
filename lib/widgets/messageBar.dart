@@ -1,9 +1,12 @@
 // Import necessary libraries
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/widgets/bottomSheet.dart';
+import 'package:flutter_application_1/widgets/messageContainer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class MessageBar extends StatefulWidget {
   const MessageBar({Key? key});
@@ -78,7 +81,13 @@ class _MessageBarState extends State<MessageBar> {
               IconButton(
                 icon: messageController.text.isEmpty
                     ? Icon(Icons.mic)
-                    : Icon(Icons.send),
+                    : InkWell(
+                        onTap: () {
+                          Provider.of<ProviderClass>(context, listen: false)
+                              .isActive = true;
+                          MessageContainer(msg: messageController.text);
+                        },
+                        child: Icon(Icons.send)),
                 onPressed: () {},
               ),
             ],

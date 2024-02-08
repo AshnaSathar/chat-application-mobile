@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/Views/PersonalChatScreen/appBarForSingleChat.dart';
 import 'package:flutter_application_1/widgets/chatBody.dart';
 import 'package:flutter_application_1/widgets/messageBar.dart';
+import 'package:flutter_application_1/widgets/messageContainer.dart';
+import 'package:provider/provider.dart';
 
 class Chat_Page extends StatefulWidget {
   final String name;
@@ -26,6 +29,9 @@ class _Chat_PageState extends State<Chat_Page> {
               );
             },
           ),
+          Provider.of<ProviderClass>(context, listen: false).isActive
+              ? MessageContainer(msg: "hey")
+              : SizedBox(),
           Positioned(
             bottom: 0,
             left: 0,
