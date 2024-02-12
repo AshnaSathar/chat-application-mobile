@@ -49,7 +49,10 @@ Widget RoomMemberBody({required context}) {
                               Chat_Page(name: "Member $index"),
                         ));
                   },
-                  child: Icon(Icons.send)),
+                  child: Icon(
+                    Icons.send,
+                    color: ColorsUsed.primaryColor,
+                  )),
             ),
           );
         },

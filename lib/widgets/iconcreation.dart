@@ -10,7 +10,7 @@ Widget iconcreation(
   return Column(
     children: [
       CircleAvatar(
-        radius: 30,
+        radius: MediaQuery.of(context).size.width * 0.08,
         backgroundColor: color,
         child: InkWell(
           onTap: () async {
@@ -44,7 +44,7 @@ Widget iconcreation(
           child: Icon(
             icon,
             color: ColorsUsed.primaryIconColor,
-            size: 29,
+            size: MediaQuery.of(context).size.width * 0.07,
           ),
         ),
       ),

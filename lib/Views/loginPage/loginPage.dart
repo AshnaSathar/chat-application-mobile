@@ -9,7 +9,6 @@ class LoginPage extends StatefulWidget {
 
   @override
   State<LoginPage> createState() => _LoginPageState();
-// route function with transition effect
   static Route HomeRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => HomePage(),
@@ -62,11 +61,6 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 40,
                         fontWeight: FontWeight.w900,
                         color: ColorsUsed.secondaryColor),
-                    // style: TextStyle(
-                    //     fontFamily: 'Montserrat',
-                    //     color: ColorsUsed.secondaryColor,
-                    //     fontSize: 50,
-                    //     fontWeight: FontWeight.w900)
                   )),
               Padding(
                   padding: const EdgeInsets.all(8.0),

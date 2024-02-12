@@ -13,6 +13,8 @@ class MessageBar extends StatefulWidget {
   State<MessageBar> createState() => _MessageBarState();
 }
 
+int? maxLines = 5;
+
 class _MessageBarState extends State<MessageBar> {
   bool _emojiShowing = false;
   TextEditingController messageController = TextEditingController();
@@ -66,12 +68,17 @@ class _MessageBarState extends State<MessageBar> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextField(
-                      style: GoogleFonts.notoColorEmoji(),
+                      style: TextStyle(fontSize: 16),
                       controller: messageController,
                       onChanged: (text) {
-                        // Update the UI based on text input
-                        setState(() {});
+                        int lines = '\n'.allMatches(text).length + 1;
+                        if (lines > 5) {
+                          setState(() {
+                            maxLines = lines > 5 ? 5 : lines;
+                          });
+                        }
                       },
+                      maxLines: maxLines,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(8.0),
@@ -80,7 +87,7 @@ class _MessageBarState extends State<MessageBar> {
                   ),
                 ),
               ),
-              buildSendButton() // New method to conditionally build the button
+              buildSendButton()
             ],
           ),
         ),
@@ -124,6 +131,9 @@ class _MessageBarState extends State<MessageBar> {
             onTap: () {
               Provider.of<ProviderClass>(context, listen: false).isActive =
                   true;
+              Provider.of<ProviderClass>(context, listen: false)
+                  .addmessage(message: messageController.text);
+              messageController.clear();
             },
             child: Icon(Icons.send),
           );

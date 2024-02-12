@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ProviderClass extends ChangeNotifier {
   List sendmessage = [];
   bool isActive = false;
+  List<String> temporaryMessages = [];
+  List<String> get allMessages => [...sendmessage, ...temporaryMessages];
   Map<String, Map<String, List<String>>> dropdownItems = {
     "Latest cricket news": {
       "Indian cricket team": [
@@ -62,6 +64,12 @@ class ProviderClass extends ChangeNotifier {
   Future addmessage({required message}) async {
     sendmessage.add(message);
     print(message);
+    notifyListeners();
+  }
+
+  void addTemporaryMessage({required String message}) {
+    temporaryMessages = [message];
+    notifyListeners();
   }
   // String subcategoryHeading = "Latest cricket news";
   // bool changeRoomPageValue = false;
