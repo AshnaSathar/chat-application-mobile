@@ -13,7 +13,7 @@ class MessageBar extends StatefulWidget {
   State<MessageBar> createState() => _MessageBarState();
 }
 
-int? maxLines = 5;
+int? maxLines = 1;
 
 class _MessageBarState extends State<MessageBar> {
   bool _emojiShowing = false;
@@ -70,15 +70,17 @@ class _MessageBarState extends State<MessageBar> {
                     child: TextField(
                       style: TextStyle(fontSize: 16),
                       controller: messageController,
+                      minLines: 1,
                       onChanged: (text) {
-                        int lines = '\n'.allMatches(text).length + 1;
-                        if (lines > 5) {
-                          setState(() {
-                            maxLines = lines > 5 ? 5 : lines;
-                          });
-                        }
+                        setState(() {});
+                        // int lines = '\n'.allMatches(text).length + 1;
+                        // if (lines > 5) {
+                        //   setState(() {
+                        //     maxLines = lines > 5 ? 5 : lines;
+                        //   });
+                        // }
                       },
-                      maxLines: maxLines,
+                      maxLines: 5,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(8.0),
