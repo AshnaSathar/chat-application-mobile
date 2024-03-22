@@ -14,7 +14,7 @@ class MessageContainer extends StatelessWidget {
       color: Colors.blue,
       child: Text(
         this.msg,
-        style: GoogleFonts.montserrat(color: Colors.white),
+        style: GoogleFonts.aBeeZee(color: Colors.white),
       ),
     );
   }
