@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/Views/HomePage/homePage.dart';
@@ -37,7 +36,6 @@ class LoginPage extends StatefulWidget {
 }
 
 // bool is_send_otp = false;
-
 class _LoginPageState extends State<LoginPage> {
   final emailValid = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -57,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController email_id_controller = TextEditingController();
-    TextEditingController user_name_controller = TextEditingController();
+    // TextEditingController user_name_controller = TextEditingController();
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -216,182 +214,58 @@ class _LoginPageState extends State<LoginPage> {
                                       GoogleFonts.montserrat().fontFamily),
                             ),
                             actions: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                            "Enter your email id",
-                                            style: TextStyle(
-                                                color: ColorsUsed.primaryColor,
-                                                fontFamily:
-                                                    GoogleFonts.montserrat()
-                                                        .fontFamily),
-                                          ),
-                                          actions: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: TextFormField(
-                                                controller: email_id_controller,
-                                                decoration: InputDecoration(
-                                                  labelText: "email id",
-                                                  labelStyle: TextStyle(
-                                                      color: ColorsUsed
-                                                          .primaryColor),
-                                                  hintText: "email Id",
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color: ColorsUsed
-                                                                  .primaryColor)),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: InkWell(
-                                                onTap: () {
-                                                  navigate_toupdate_password(
-                                                      data: email_id_controller
-                                                          .text,
-                                                      is_email_id: true,
-                                                      context: context);
-                                                },
-                                                child: CircleAvatar(
-                                                  backgroundColor:
-                                                      ColorsUsed.primaryColor,
-                                                  child: Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_outlined,
-                                                    color: ColorsUsed
-                                                        .secondaryColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    );
-
-                                    // -------------------
-                                  },
-                                  child: Container(
-                                    height:
-                                        MediaQuery.sizeOf(context).height * .07,
-                                    width:
-                                        MediaQuery.sizeOf(context).width * .3,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: ColorsUsed.primaryColor),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "Email_id",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: GoogleFonts.montserrat()
-                                              .fontFamily,
-                                          color: ColorsUsed.primaryColor),
-                                    )),
-                                  ),
+                              TextFormField(
+                                controller: email_id_controller,
+                                decoration: InputDecoration(
+                                  labelText: "email Id",
+                                  labelStyle:
+                                      TextStyle(color: ColorsUsed.primaryColor),
+                                  hintText: "email Id",
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorsUsed.primaryColor)),
+                                  border: OutlineInputBorder(),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                            "Enter your User_name",
-                                            style: TextStyle(
-                                                color: ColorsUsed.primaryColor,
-                                                fontFamily:
-                                                    GoogleFonts.montserrat()
-                                                        .fontFamily),
-                                          ),
-                                          actions: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: TextFormField(
-                                                controller:
-                                                    user_name_controller,
-                                                decoration: InputDecoration(
-                                                  labelText: "User_name",
-                                                  labelStyle: TextStyle(
-                                                      color: ColorsUsed
-                                                          .primaryColor),
-                                                  hintText: "User_name",
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color: ColorsUsed
-                                                                  .primaryColor)),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: InkWell(
-                                                onTap: () {
-                                                  navigate_toupdate_password(
-                                                      data: user_name_controller
-                                                          .text,
-                                                      is_email_id: false,
-                                                      context: context);
-                                                },
-                                                child: CircleAvatar(
-                                                  backgroundColor:
-                                                      ColorsUsed.primaryColor,
-                                                  child: Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_outlined,
-                                                    color: ColorsUsed
-                                                        .secondaryColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    );
-                                    // -----------------
-                                  },
-                                  child: Container(
-                                    height:
-                                        MediaQuery.sizeOf(context).height * .07,
-                                    width:
-                                        MediaQuery.sizeOf(context).width * .3,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: ColorsUsed.primaryColor),
-                                      borderRadius: BorderRadius.circular(15),
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      final bool emailValid = RegExp(
+                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                          .hasMatch(email_id_controller.text);
+                                      if (email_id_controller.text == null ||
+                                          email_id_controller.text == "") {
+                                        show_bottom_sheet(
+                                            context: context,
+                                            data_to_display:
+                                                "Email id can't be null. please enter your email_id");
+                                      } else {
+                                        if (emailValid) {
+                                          navigate_toupdate_password(
+                                              context: context,
+                                              data: email_id_controller.text,
+                                              is_email_id: true);
+                                          email_id_controller.clear();
+                                        } else {
+                                          show_bottom_sheet(
+                                              context: context,
+                                              data_to_display:
+                                                  "invalid email format");
+                                        }
+                                      }
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: ColorsUsed.primaryColor,
+                                      child: Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                        color: ColorsUsed.secondaryColor,
+                                      ),
                                     ),
-                                    child: Center(
-                                        child: Text(
-                                      "User_name",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: GoogleFonts.montserrat()
-                                              .fontFamily,
-                                          color: ColorsUsed.primaryColor),
-                                    )),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           );
                         },
@@ -452,24 +326,218 @@ class _LoginPageState extends State<LoginPage> {
       {required context, required is_email_id, required data}) async {
     var email_id;
     var user_name;
-    if (is_email_id) {
+
+    if (is_email_id != null) {
       email_id = data;
       user_name = null;
     } else {
       user_name = data;
       email_id = null;
     }
-    if (email_id == null || user_name == null) {
-      if (is_email_id) {}
-    } else {
+    if (email_id == null && user_name == null) {
+      print("1");
+      show_bottom_sheet(
+          context: context, data_to_display: "Both fields can't be empty");
+    } else if (email_id != null && user_name == null) {
+      print("2");
+      print("$email_id && $user_name");
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Update_password(
               email_id: email_id,
+              user_name: null,
+            ),
+          ));
+    } else if (email_id == null && user_name != null) {
+      if (user_name == "") {
+        print("empty");
+      }
+      print("3");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Update_password(
+              email_id: null,
               user_name: user_name,
             ),
           ));
     }
   }
 }
+// Padding(
+//   padding: const EdgeInsets.all(8.0),
+//   child: InkWell(
+//     onTap: () {
+//       Navigator.pop(context);
+//       showDialog(
+//         context: context,
+//         builder: (context) {
+//           return AlertDialog(
+//             title: Text(
+//               "Enter your User_name",
+//               style: TextStyle(
+//                   color: ColorsUsed.primaryColor,
+//                   fontFamily:
+//                       GoogleFonts.montserrat()
+//                           .fontFamily),
+//             ),
+//             actions: [
+//               Padding(
+//                 padding:
+//                     const EdgeInsets.all(8.0),
+//                 child: TextFormField(
+//                   controller:
+//                       user_name_controller,
+//                   decoration: InputDecoration(
+//                     labelText: "User_name",
+//                     labelStyle: TextStyle(
+//                         color: ColorsUsed
+//                             .primaryColor),
+//                     hintText: "User_name",
+//                     enabledBorder:
+//                         OutlineInputBorder(
+//                             borderSide: BorderSide(
+//                                 color: ColorsUsed
+//                                     .primaryColor)),
+//                     border: OutlineInputBorder(),
+//                   ),
+//                 ),
+//               ),
+//               Center(
+//                 child: InkWell(
+//                   onTap: () {
+//                     navigate_toupdate_password(
+//                         data: user_name_controller
+//                             .text,
+//                         is_email_id: false,
+//                         context: context);
+//                   },
+//                   child: CircleAvatar(
+//                     backgroundColor:
+//                         ColorsUsed.primaryColor,
+//                     child: Icon(
+//                       Icons
+//                           .arrow_forward_ios_outlined,
+//                       color: ColorsUsed
+//                           .secondaryColor,
+//                     ),
+//                   ),
+//                 ),
+//               )
+//             ],
+//           );
+//         },
+//       );
+//       // -----------------
+//     },
+//     child: Container(
+//       height:
+//           MediaQuery.sizeOf(context).height * .07,
+//       width:
+//           MediaQuery.sizeOf(context).width * .3,
+//       decoration: BoxDecoration(
+//         border: Border.all(
+//             color: ColorsUsed.primaryColor),
+//         borderRadius: BorderRadius.circular(15),
+//       ),
+//       child: Center(
+//           child: Text(
+//         "User_name",
+//         style: TextStyle(
+//             fontWeight: FontWeight.w700,
+//             fontFamily: GoogleFonts.montserrat()
+//                 .fontFamily,
+//             color: ColorsUsed.primaryColor),
+//       )),
+//     ),
+//   ),
+// )
+
+//  Padding(
+//   padding: const EdgeInsets.all(8.0),
+//   child: InkWell(
+//     onTap: () {
+//       Navigator.pop(context);
+//       showDialog(
+//         context: context,
+//         builder: (context) {
+//           return AlertDialog(
+//             title: Text(
+//               "Enter your email id",
+//               style: TextStyle(
+//                   color: ColorsUsed.primaryColor,
+//                   fontFamily:
+//                       GoogleFonts.montserrat()
+//                           .fontFamily),
+//             ),
+//             actions: [
+//               Padding(
+//                 padding:
+//                     const EdgeInsets.all(8.0),
+//                 child: TextFormField(
+//                   controller: email_id_controller,
+//                   decoration: InputDecoration(
+//                     labelText: "email Id",
+//                     labelStyle: TextStyle(
+//                         color: ColorsUsed
+//                             .primaryColor),
+//                     hintText: "email Id",
+//                     enabledBorder:
+//                         OutlineInputBorder(
+//                             borderSide: BorderSide(
+//                                 color: ColorsUsed
+//                                     .primaryColor)),
+//                     border: OutlineInputBorder(),
+//                   ),
+//                 ),
+//               ),
+//               Center(
+//                 child: InkWell(
+//                   onTap: () {
+//                     navigate_toupdate_password(
+//                         data: email_id_controller
+//                             .text,
+//                         is_email_id: true,
+//                         context: context);
+//                   },
+//                   child: CircleAvatar(
+//                     backgroundColor:
+//                         ColorsUsed.primaryColor,
+//                     child: Icon(
+//                       Icons
+//                           .arrow_forward_ios_outlined,
+//                       color: ColorsUsed
+//                           .secondaryColor,
+//                     ),
+//                   ),
+//                 ),
+//               )
+//             ],
+//           );
+//         },
+//       );
+//       // -------------------
+//     },
+//     child: Container(
+//       height:
+//           MediaQuery.sizeOf(context).height * .07,
+//       width:
+//           MediaQuery.sizeOf(context).width * .3,
+//       decoration: BoxDecoration(
+//         border: Border.all(
+//             color: ColorsUsed.primaryColor),
+//         borderRadius: BorderRadius.circular(15),
+//       ),
+//       child: Center(
+//           child: Text(
+//         "Email_id",
+//         style: TextStyle(
+//             fontWeight: FontWeight.w700,
+//             fontFamily: GoogleFonts.montserrat()
+//                 .fontFamily,
+//             color: ColorsUsed.primaryColor),
+//       )),
+//     ),
+//   ),
+// ),
