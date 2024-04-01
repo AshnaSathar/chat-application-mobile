@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Controller/forget_password_provider.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/Views/HomePage/homePage.dart';
+import 'package:flutter_application_1/Views/a.dart';
 import 'package:flutter_application_1/Views/loginPage/update_password.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:flutter_application_1/constants/textstyle.dart';
-import 'package:flutter_application_1/registerPage.dart';
 import 'package:flutter_application_1/widgets/checkbox.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   TextEditingController name_controller = TextEditingController();
   TextEditingController password_controller = TextEditingController();
+  TextEditingController email_controller = TextEditingController();
   List<CheckboxItem> checkboxes = [
     CheckboxItem(
       name: 'Remember my ID and password',
@@ -75,23 +77,24 @@ class _LoginPageState extends State<LoginPage> {
                         color: ColorsUsed.secondaryColor),
                   )),
               Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                      controller: name_controller,
-                      style: TextStyleConstants.textstyle(
-                          color: ColorsUsed.primaryTextColor),
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: ColorsUsed.primaryTextColor),
-                        ),
-                        hintStyle:
-                            TextStyle(color: ColorsUsed.primaryTextColor),
-                        hintText: "Ynotz Id",
-                      ))),
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: name_controller,
+                  style: TextStyleConstants.textstyle(
+                      color: ColorsUsed.primaryTextColor),
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: ColorsUsed.primaryTextColor),
+                    ),
+                    hintStyle: TextStyle(color: ColorsUsed.primaryTextColor),
+                    hintText: "User Name",
+                  ),
+                ),
+              ),
               Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
@@ -231,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                   child: InkWell(
-                                    onTap: () {
+                                    onTap: () async {
                                       final bool emailValid = RegExp(
                                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                           .hasMatch(email_id_controller.text);
@@ -243,10 +246,25 @@ class _LoginPageState extends State<LoginPage> {
                                                 "Email id can't be null. please enter your email_id");
                                       } else {
                                         if (emailValid) {
-                                          navigate_toupdate_password(
-                                              context: context,
-                                              data: email_id_controller.text,
-                                              is_email_id: true);
+                                          bool status = await Provider.of<
+                                                      Forget_password_provider>(
+                                                  context,
+                                                  listen: false)
+                                              .get_data(
+                                                  email_id:
+                                                      email_id_controller.text);
+                                          if (status) {
+                                            navigate_toupdate_password(
+                                                context: context,
+                                                data: email_id_controller.text,
+                                                is_email_id: true);
+                                          } else {
+                                            show_bottom_sheet(
+                                                context: context,
+                                                data_to_display:
+                                                    "Invalid email!! Try adding registered email");
+                                          }
+
                                           email_id_controller.clear();
                                         } else {
                                           show_bottom_sheet(
@@ -280,11 +298,16 @@ class _LoginPageState extends State<LoginPage> {
                   )),
               InkWell(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegisterPage(),
+                        builder: (context) => Welcome_page(),
                       ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => RegisterPage(),
+                  //     ));
                 },
                 child: Text(
                   "Don't have an account?",
@@ -346,7 +369,9 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(
             builder: (context) => Update_password(
               email_id: email_id,
-              user_name: null,
+              user_name:
+                  Provider.of<Forget_password_provider>(context, listen: false)
+                      .user_name,
             ),
           ));
     } else if (email_id == null && user_name != null) {

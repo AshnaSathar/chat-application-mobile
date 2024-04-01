@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Controller/friendship_provider.dart';
+import 'package:flutter_application_1/Controller/all_users_provider.dart';
+import 'package:flutter_application_1/Controller/forget_password_provider.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
+import 'package:flutter_application_1/Controller/profile_updation_provider.dart';
 import 'package:flutter_application_1/Controller/providerclass.dart';
 import 'package:flutter_application_1/Controller/register_provider.dart';
 import 'package:flutter_application_1/Views/loginPage/loginPage.dart';
@@ -24,6 +28,18 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => Register_provider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => Forget_password_provider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => Profile_updation_provider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => All_users_provider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => Friendship_provider(),
           ),
         ],
         child: SafeArea(

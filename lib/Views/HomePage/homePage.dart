@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Controller/all_users_provider.dart';
+import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/Views/HomePage/allChats.dart';
 import 'package:flutter_application_1/Views/HomePage/allRooms.dart';
+import 'package:flutter_application_1/Views/HomePage/profile_page.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +15,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() {
+    try {
+      Provider.of<All_users_provider>(context, listen: false).getUsers(
+          token: Provider.of<Login_provider>(context, listen: false).token);
+    } catch (error) {
+      print("error is $error");
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsUsed.secondaryColor,
@@ -101,22 +118,31 @@ class HomePageAppbar extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: Offset(0, 2),
-                ),
-              ]),
-              height: height * 0.15,
-              width: width * 0.15,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  "assets/dp1.webp",
-                  fit: BoxFit.fill,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Profile_page(),
+                    ));
+              },
+              child: Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 2),
+                  ),
+                ]),
+                height: height * 0.15,
+                width: width * 0.15,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    "assets/dp1.webp",
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
