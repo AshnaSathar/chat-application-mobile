@@ -96,38 +96,38 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    style: TextStyleConstants.textstyle(
-                        color: ColorsUsed.primaryTextColor),
-                    controller: password_controller,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: ColorsUsed.primaryTextColor),
-                        ),
-                        hintText: "Password",
-                        hintStyle:
-                            TextStyle(color: ColorsUsed.primaryTextColor),
-                        suffix: InkWell(
-                            onTap: () {
-                              setState(() {
-                                isPasswordVisible = !isPasswordVisible;
-                              });
-                            },
-                            child: Icon(
-                              isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: ColorsUsed.primaryIconColor,
-                            ))),
-                    obscureText: !isPasswordVisible,
-                    keyboardType: TextInputType.visiblePassword,
-                    textInputAction: TextInputAction.done,
-                  )),
+                padding: const EdgeInsets.all(10.0),
+                child: TextFormField(
+                  style: TextStyleConstants.textstyle(
+                      color: ColorsUsed.primaryTextColor),
+                  controller: password_controller,
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: ColorsUsed.primaryTextColor),
+                      ),
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: ColorsUsed.primaryTextColor),
+                      suffix: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
+                          child: Icon(
+                            isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: ColorsUsed.primaryIconColor,
+                          ))),
+                  obscureText: !isPasswordVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.done,
+                ),
+              ),
               Container(
                   width: double.infinity,
                   child: CheckboxGroup(
@@ -198,6 +198,29 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "DOn't have an account? ",
+                      style: TextStyleConstants.textstyle(
+                          fontWeight: FontWeight.w400,
+                          color: ColorsUsed.primaryTextColor),
+                    ),
+                    InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Welcome_page(),
+                              ));
+                        },
+                        child: Text("SIGN UP"))
+                  ],
+                ),
               ),
               Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -296,26 +319,6 @@ class _LoginPageState extends State<LoginPage> {
                           color: ColorsUsed.primaryTextColor),
                     ),
                   )),
-              InkWell(
-                onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Welcome_page(),
-                      ));
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => RegisterPage(),
-                  //     ));
-                },
-                child: Text(
-                  "Don't have an account?",
-                  style: TextStyleConstants.textstyle(
-                      fontWeight: FontWeight.w400,
-                      color: ColorsUsed.primaryTextColor),
-                ),
-              )
             ],
           ),
         ),

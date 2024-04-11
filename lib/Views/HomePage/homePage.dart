@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Controller/all_users_provider.dart';
+import 'package:flutter_application_1/Controller/friendship_provider.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/Views/HomePage/allChats.dart';
 import 'package:flutter_application_1/Views/HomePage/allRooms.dart';
@@ -20,10 +21,15 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  getData() {
+  getData() async {
     try {
       Provider.of<All_users_provider>(context, listen: false).getUsers(
           token: Provider.of<Login_provider>(context, listen: false).token);
+      await Provider.of<Friendship_provider>(context, listen: false)
+          .get_friends(
+              user_id:
+                  Provider.of<Login_provider>(context, listen: false).user_id,
+              token: Provider.of<Login_provider>(context, listen: false).token);
     } catch (error) {
       print("error is $error");
     }

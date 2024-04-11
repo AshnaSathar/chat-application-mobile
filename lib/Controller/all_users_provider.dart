@@ -21,9 +21,6 @@ class All_users_provider extends ChangeNotifier {
         var jsonData = json.decode(response.body);
         _usersModel = UsersModel.fromJson(jsonData);
         _originalUsers = _usersModel?.users.toList(); // Store the original list
-        print("---------------------------");
-        print(_usersModel!.users);
-        print(response.body);
       } else {
         print("Failed to fetch data. Status code: ${response.statusCode}");
       }

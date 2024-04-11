@@ -31,11 +31,9 @@ class Login_provider extends ChangeNotifier {
         dob = parse_response['dob'];
         print("token generated is $token");
         print("user id is ${user_id} and username is ${userName}");
-        print("email id for the user is===========$email_id");
-        print("dob id for the user is===========$dob");
+        // print("email id for the user is===========$email_id");
+        // print("dob id for the user is===========$dob");
         is_success = true;
-        print(is_success);
-        print("Post data successfully");
         notifyListeners();
         return true;
       } else {

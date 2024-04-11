@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/Controller/friendship_provider.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/Views/HomePage/edit_profile_page.dart';
+import 'package:flutter_application_1/Views/HomePage/friends_list_page.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +15,26 @@ class Profile_page extends StatefulWidget {
 }
 
 class _Profile_pageState extends State<Profile_page> {
+  @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
+
+  // getData() async {
+  //   await Provider.of<Friendship_provider>(context, listen: false).get_friends(
+  //       user_id: Provider.of<Login_provider>(context, listen: false).user_id,
+  //       token: Provider.of<Login_provider>(context, listen: false).token);
+  // }
+
   TextEditingController input_controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var length = Provider.of<Friendship_provider>(context, listen: false)
+        .friendsModel
+        ?.friends
+        .length;
     return Scaffold(
       backgroundColor: ColorsUsed.primaryColor,
       body: SingleChildScrollView(
@@ -131,7 +148,13 @@ class _Profile_pageState extends State<Profile_page> {
                     fontFamily: GoogleFonts.montserrat().fontFamily),
               ),
               subtitle: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Friends_list_page(),
+                      ));
+                },
                 child: Text(
                   "878 Friends",
                   style: TextStyle(

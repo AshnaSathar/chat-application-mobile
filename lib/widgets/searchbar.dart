@@ -3,13 +3,17 @@ import 'package:flutter_application_1/Controller/friendship_provider.dart';
 import 'package:flutter_application_1/Controller/all_users_provider.dart';
 import 'package:flutter_application_1/Controller/login_provider.dart';
 import 'package:flutter_application_1/constants/colorConstants.dart';
-import 'package:flutter_application_1/widgets/bottomSheet.dart';
 import 'package:flutter_application_1/widgets/show_model_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
-class SearchbarCustom extends StatelessWidget {
+class SearchbarCustom extends StatefulWidget {
   const SearchbarCustom({super.key});
 
+  @override
+  State<SearchbarCustom> createState() => _SearchbarCustomState();
+}
+
+class _SearchbarCustomState extends State<SearchbarCustom> {
   @override
   Widget build(BuildContext context) {
     TextEditingController search_controller = TextEditingController();
@@ -78,11 +82,12 @@ class SearchbarCustom extends StatelessWidget {
                                                 context,
                                                 listen: false)
                                             .token,
-                                        friend_uid: "21");
+                                        friend_uid: user.id);
                             if (success == true) {
                               show_bottom_sheet(
                                   context: context,
                                   data_to_display: "Added to your friend list");
+                              setState(() {});
                             } else {
                               show_bottom_sheet(
                                   context: context,
